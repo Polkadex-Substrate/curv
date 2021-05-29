@@ -6,7 +6,7 @@ use crate::BigInt;
 use crate::ErrorKey;
 use generic_array::typenum::U32;
 use generic_array::GenericArray;
-use p256::ecdsa::VerifyKey;
+use p256::ecdsa::VerifyingKey as VerifyKey;
 use p256::elliptic_curve::sec1::{FromEncodedPoint, ToEncodedPoint};
 use p256::{AffinePoint, EncodedPoint, ProjectivePoint, Scalar};
 use rand::{thread_rng, Rng};
@@ -20,6 +20,7 @@ use std::{fmt, ptr};
 use zeroize::Zeroize;
 
 pub type SK = Scalar;
+
 pub type PK = VerifyKey;
 
 #[derive(Clone, Copy, Debug)]
@@ -28,7 +29,7 @@ pub struct Secp256r1Scalar {
     fe: SK,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Secp256r1Point {
     purpose: &'static str,
     ge: PK,
@@ -257,7 +258,7 @@ impl ECPoint for Secp256r1Point {
     }
 
     fn get_element(&self) -> PK {
-        self.ge
+        self.ge.clone()
     }
 
     fn bytes_compressed_to_big_int(&self) -> BigInt {
@@ -266,7 +267,7 @@ impl ECPoint for Secp256r1Point {
 
     fn x_coor(&self) -> Option<BigInt> {
         Some(BigInt::from_bytes(
-            EncodedPoint::from(&self.ge).x().as_slice(),
+            EncodedPoint::from(&self.ge).x().unwrap().as_slice(),
         ))
     }
 
@@ -279,7 +280,7 @@ impl ECPoint for Secp256r1Point {
     }
 
     fn from_bytes(bytes: &[u8]) -> Result<Secp256r1Point, ErrorKey> {
-        let result = PK::new(&bytes);
+        let result = PK::from_sec1_bytes(&bytes);
         let test = result.map(|pk| Secp256r1Point {
             purpose: "random",
             ge: pk,
@@ -659,8 +660,8 @@ mod tests {
         let a_minus_b = BigInt::mod_add(&a.to_big_int(), &minus_b, &q);
         let a_minus_b_fe: Secp256r1Scalar = ECScalar::from(&a_minus_b);
         let base: Secp256r1Point = ECPoint::generator();
-        let point_ab1 = base * a_minus_b_fe;
-        let point_a = base * a;
+        let point_ab1 = base.clone() * a_minus_b_fe;
+        let point_a = base.clone() * a;
         let point_b = base * b;
         let point_ab2 = point_a.sub_point(&point_b.get_element());
         assert_eq!(point_ab1.get_element(), point_ab2.get_element());
@@ -853,8 +854,8 @@ mod tests {
     fn add_sub_point() {
         let g = Secp256r1Point::generator();
         let i: Secp256r1Scalar = ECScalar::from(&BigInt::from(3));
-        assert_eq!((g + g + g).get_element(), (g * i).get_element());
-        assert_eq!((g + g).get_element(), (g + g - g + g).get_element());
+        assert_eq!((g.clone() + g.clone() + g.clone()).get_element(), (g.clone() * i).get_element());
+        assert_eq!((g.clone() + g.clone()).get_element(), (g.clone() + g.clone() - g.clone() + g.clone()).get_element());
     }
 
     #[test]
