@@ -43,7 +43,7 @@ version = "0.20"
 features = ["serde", "rand-std"]
 
 [dependencies.p256]
-version = "0.5"
+version = "0.8.1"
 features = ["ecdsa"]
 
 [dev-dependencies]
