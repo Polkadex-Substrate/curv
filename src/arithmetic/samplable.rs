@@ -1,5 +1,5 @@
 use rand::{rngs::OsRng, RngCore};
-use std::{vec, vec::Vec};
+
 use super::traits::{BitManipulation, Converter, Samplable, Zero};
 use super::BigInt;
 

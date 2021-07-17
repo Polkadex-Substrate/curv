@@ -23,7 +23,7 @@ use gmp::sign::Sign;
 use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 use zeroize::Zeroize;
-use std::prelude::*;
+
 use super::errors::*;
 use super::traits::*;
 

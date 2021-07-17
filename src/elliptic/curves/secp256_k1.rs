@@ -20,7 +20,7 @@ use super::traits::{ECPoint, ECScalar};
 use crate::arithmetic::traits::*;
 use crate::BigInt;
 use crate::ErrorKey;
-use std::{vec, vec::Vec};
+
 #[cfg(feature = "merkle")]
 use crypto::digest::Digest;
 #[cfg(feature = "merkle")]

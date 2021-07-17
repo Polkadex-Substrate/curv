@@ -4,10 +4,8 @@
     (https://github.com/KZen-networks/curv)
     License MIT: <https://github.com/KZen-networks/curv/blob/master/LICENSE>
 */
-#![no_std]
-#![allow(clippy::upper_case_acronyms)]
 
-extern crate sp_std as std;
+#![allow(clippy::upper_case_acronyms)]
 
 pub mod elliptic;
 
