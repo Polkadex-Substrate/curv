@@ -15,7 +15,7 @@
 */
 
 use super::errors::ParseBigIntError;
-
+use std::prelude::*;
 /// Reuse common traits from [num_integer] crate
 pub use num_integer::{Integer, Roots};
 /// Reuse common traits from [num_traits] crate

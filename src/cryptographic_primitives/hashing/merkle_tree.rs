@@ -11,7 +11,7 @@ use std::marker::PhantomData;
 
 use crypto::sha3::Sha3;
 use merkle::{MerkleTree, Proof};
-
+use std::prelude::*;
 use crate::elliptic::curves::traits::ECPoint;
 /*
 pub struct MT256<'a> {

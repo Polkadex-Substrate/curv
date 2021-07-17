@@ -12,7 +12,7 @@ use crate::arithmetic::traits::*;
 use crate::elliptic::curves::traits::*;
 use crate::BigInt;
 use crate::ErrorSS::{self, VerifyShareError};
-
+use std::{vec, vec::Vec};
 #[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct ShamirSecretSharing {
     pub threshold: usize,   //t

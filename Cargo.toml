@@ -11,6 +11,8 @@ repository = "https://github.com/ZenGo-X/curv"
 crate-type = ["lib"]
 
 [dependencies]
+sp-std = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07' }
+version = '3.0.0'
 blake2b_simd = "0.5.7"
 cryptoxide = "0.1.2"
 curve25519-dalek = "1.2.3"
