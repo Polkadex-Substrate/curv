@@ -20,7 +20,8 @@ use super::traits::{ECPoint, ECScalar};
 use crate::arithmetic::traits::*;
 use crate::BigInt;
 use crate::ErrorKey;
-use libsecp256k1::{PublicKey, SecretKey};
+use rand::thread_rng;
+use secp256k1::{PublicKey, SecretKey};
 
 #[cfg(feature = "merkle")]
 use crypto::digest::Digest;
@@ -28,7 +29,6 @@ use crypto::digest::Digest;
 use crypto::sha3::Sha3;
 #[cfg(feature = "merkle")]
 use merkle::Hashable;
-use rand::thread_rng;
 use super::secp256_k1_constants::{
     CURVE_ORDER, GENERATOR_X, GENERATOR_Y, SECRET_KEY_SIZE, UNCOMPRESSED_PUBLIC_KEY_SIZE,
 };
@@ -60,12 +60,12 @@ const BASE_POINT2_Y: [u8; 32] = [
 pub type SK = SecretKey;
 pub type PK = PublicKey;
 
-#[derive(Clone, Debug, Copy)]
+#[derive(Clone, Debug)]
 pub struct Secp256k1Scalar {
     purpose: &'static str,
     fe: SK,
 }
-#[derive(Clone, Debug, Copy)]
+#[derive(Clone, Debug)]
 pub struct Secp256k1Point {
     purpose: &'static str,
     ge: PK,
