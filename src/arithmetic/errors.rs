@@ -1,5 +1,5 @@
 use std::{error, fmt};
-
+use rust_gmp_kzen as gmp;
 /// Error type returned when conversion from hex to BigInt fails.
 #[derive(Debug)]
 pub struct ParseBigIntError {

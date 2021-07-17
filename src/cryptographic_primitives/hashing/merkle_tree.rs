@@ -8,7 +8,7 @@
 // enabled via feature since it uses rust-crypto.
 
 use std::marker::PhantomData;
-
+use std::vec::Vec;
 use crypto::sha3::Sha3;
 use merkle::{MerkleTree, Proof};
 

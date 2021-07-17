@@ -41,6 +41,9 @@ use std::ops::{Add, Mul};
 use std::ptr;
 use std::sync::{atomic, Once};
 use zeroize::Zeroize;
+use std::string::String;
+use std::vec::Vec;
+use std::vec;
 /* X coordinate of a point of unknown discrete logarithm.
 Computed using a deterministic algorithm with the generator as input.
 See test_base_point2 */

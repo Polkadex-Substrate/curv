@@ -7,7 +7,7 @@
 */
 
 use serde::{Deserialize, Serialize};
-
+use std::vec::Vec;
 use crate::arithmetic::traits::*;
 use crate::elliptic::curves::traits::*;
 use crate::BigInt;
