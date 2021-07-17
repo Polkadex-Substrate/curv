@@ -39,7 +39,7 @@ use serde::{Deserialize, Deserializer};
 use std::fmt;
 use std::ops::{Add, Mul};
 use std::ptr;
-use std::sync::{atomic, Once};
+use std::sync::{atomic};
 use zeroize::Zeroize;
 use std::string::String;
 use std::vec::Vec;
