@@ -20,6 +20,8 @@ use super::traits::{ECPoint, ECScalar};
 use crate::arithmetic::traits::*;
 use crate::BigInt;
 use crate::ErrorKey;
+use libsecp256k1::{PublicKey, SecretKey};
+
 #[cfg(feature = "merkle")]
 use crypto::digest::Digest;
 #[cfg(feature = "merkle")]
@@ -30,7 +32,6 @@ use rand::thread_rng;
 use super::secp256_k1_constants::{
     CURVE_ORDER, GENERATOR_X, GENERATOR_Y, SECRET_KEY_SIZE, UNCOMPRESSED_PUBLIC_KEY_SIZE,
 };
-use libsecp256k1::{PublicKey, SecretKey};
 use serde::de::{self, Error, MapAccess, SeqAccess, Visitor};
 use serde::ser::SerializeStruct;
 use serde::ser::{Serialize, Serializer};
