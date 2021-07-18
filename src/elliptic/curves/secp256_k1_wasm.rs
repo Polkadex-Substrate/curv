@@ -113,7 +113,7 @@ impl ECScalar for Secp256k1Scalar {
     }
 
     fn get_element(&self) -> SK {
-        self.fe
+        self.fe.clone()
     }
 
     fn set_element(&mut self, element: SK) {
@@ -147,7 +147,7 @@ impl ECScalar for Secp256k1Scalar {
 
     fn add(&self, other: &SK) -> Secp256k1Scalar {
         let mut other_scalar: FE = ECScalar::new_random();
-        other_scalar.set_element(*other);
+        other_scalar.set_element(other.clone());
         let res: FE = ECScalar::from(&BigInt::mod_add(
             &self.to_big_int(),
             &other_scalar.to_big_int(),
@@ -161,7 +161,7 @@ impl ECScalar for Secp256k1Scalar {
 
     fn mul(&self, other: &SK) -> Secp256k1Scalar {
         let mut other_scalar: FE = ECScalar::new_random();
-        other_scalar.set_element(*other);
+        other_scalar.set_element(other.clone());
         let res: FE = ECScalar::from(&BigInt::mod_mul(
             &self.to_big_int(),
             &other_scalar.to_big_int(),
@@ -175,7 +175,7 @@ impl ECScalar for Secp256k1Scalar {
 
     fn sub(&self, other: &SK) -> Secp256k1Scalar {
         let mut other_scalar: FE = ECScalar::new_random();
-        other_scalar.set_element(*other);
+        other_scalar.set_element(other.clone());
         let res: FE = ECScalar::from(&BigInt::mod_sub(
             &self.to_big_int(),
             &other_scalar.to_big_int(),
@@ -300,7 +300,7 @@ impl ECPoint for Secp256k1Point {
     }
 
     fn get_element(&self) -> PK {
-        self.ge
+        self.ge.clone()
     }
 
     /// to return from BigInt to PK use from_bytes:
@@ -402,7 +402,7 @@ impl ECPoint for Secp256k1Point {
     }
 
     fn scalar_mul(&self, fe: &SK) -> Secp256k1Point {
-        let mut new_point = *self;
+        let mut new_point = self.clone();
         new_point
             .ge
             .tweak_mul_assign( &fe)
@@ -413,14 +413,14 @@ impl ECPoint for Secp256k1Point {
     fn add_point(&self, other: &PK) -> Secp256k1Point {
         Secp256k1Point {
             purpose: "combine",
-            ge: PublicKey::combine(&[self.ge,*other]).unwrap(),
+            ge: PublicKey::combine(&[self.ge.clone(),other.clone()]).unwrap(),
         }
     }
 
     fn sub_point(&self, other: &PK) -> Secp256k1Point {
         let point = Secp256k1Point {
             purpose: "sub_point",
-            ge: *other,
+            ge: other.clone(),
         };
         let p: Vec<u8> = vec![
             255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
