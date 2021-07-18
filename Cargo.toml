@@ -27,24 +27,27 @@ sha2 = { version = "0.8.0", git = "https://github.com/mesalock-linux/rustcrypto-
 sha3 = { version = "0.8.2", git = "https://github.com/mesalock-linux/rustcrypto-hashes-sgx.git" }
 libsecp256k1 = { version = "0.3.5", git = "https://github.com/mesalock-linux/libsecp256k1-rs-sgx.git" }
 rust-gmp-kzen = { package = "rust-gmp", version = "0.5", git = "https://github.com/Polkadex-Substrate/rust-gmp.git", optional = true }
-rust-crypto = { version = "^0.2", git = "https://github.com/Polkadex-Substrate/rust-crypto.git" }
-ring-algorithm = { version = "0.3.0", git = "https://github.com/Polkadex-Substrate/ring-algorithm.git" }
+#rust-crypto = { version = "^0.2", git = "https://github.com/Polkadex-Substrate/rust-crypto.git" }
+rust-crypto = { git = "https://github.com/mesalock-linux/rust-crypto-sgx" }
 serde_derive = { version = "1.0", git = "https://github.com/mesalock-linux/serde-sgx.git" }
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+zeroize = { version = "1" }
+ring-algorithm = { version = "0.3.0", git = "https://github.com/Polkadex-Substrate/ring-algorithm.git" }
 
 # The following crates are either not okay or not tested with SGX
-derivative = "2.2" # Not available in SGX world
-zeroize = "1"
+#derivative = "2.2" # Not available in SGX world
 #merkle-sha3 = "^0.1" # Can be converted using SGX world
-lazy_static = "1.4.0" # can be converted
 
-[dependencies.p256]
-version = "0.8.1"
-features = ["ecdsa"]
 
-[dev-dependencies]
-bincode = { version = "1.1", git = "https://github.com/mesalock-linux/bincode-sgx.git" }
-serde_json = { version = "1.0", git = "https://github.com/mesalock-linux/serde-json-sgx.git" }
-paste = "1.0.2"
+#[dependencies.p256]
+#version = "0.8.1"
+#features = ["ecdsa"]
+#default-features = false
+
+#[dev-dependencies]
+#bincode = { version = "1.1", git = "https://github.com/mesalock-linux/bincode-sgx.git" }
+#serde_json = { version = "1.0", git = "https://github.com/mesalock-linux/serde-json-sgx.git" }
+#paste = "1.0.2"
 
 [features]
 default = ["rust-gmp-kzen"]
