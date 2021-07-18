@@ -17,12 +17,15 @@
 use std::convert::{TryFrom, TryInto};
 use std::sync::atomic;
 use std::{fmt, ops, ptr};
-
+use rust_gmp_kzen as gmp;
 use gmp::mpz::Mpz;
 use gmp::sign::Sign;
 use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 use zeroize::Zeroize;
+use std::string::String;
+use std::vec::Vec;
+
 
 use super::errors::*;
 use super::traits::*;

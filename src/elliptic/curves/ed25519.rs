@@ -25,6 +25,7 @@ pub type PK = GeP3;
 use crate::arithmetic::traits::*;
 use crate::BigInt;
 use crate::ErrorKey::{self, InvalidPublicKey};
+use std::string::ToString;
 #[cfg(feature = "merkle")]
 use crypto::digest::Digest;
 #[cfg(feature = "merkle")]
