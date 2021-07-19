@@ -31,7 +31,7 @@ rust-gmp-kzen = { package = "rust-gmp", version = "0.5", git = "https://github.c
 rust-crypto = { git = "https://github.com/mesalock-linux/rust-crypto-sgx" }
 serde_derive = { version = "1.0", git = "https://github.com/mesalock-linux/serde-sgx.git" }
 lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
-zeroize = { version = "1" }
+zeroize = { version = "1.3.0" }
 ring-algorithm = { version = "0.3.0", git = "https://github.com/Polkadex-Substrate/ring-algorithm.git" }
 
 # The following crates are either not okay or not tested with SGX
