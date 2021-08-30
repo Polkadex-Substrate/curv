@@ -41,7 +41,7 @@ merkle-sha3 = "^0.1" # Can be converted using SGX world
 
 
 [dependencies.p256]
-version = "0.8.1"
+version = "0.5"
 features = ["ecdsa"]
 default-features = false
 
